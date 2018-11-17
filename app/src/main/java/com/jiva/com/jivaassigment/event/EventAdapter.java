@@ -5,10 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
@@ -26,7 +26,6 @@ public class EventAdapter extends RecyclerView.Adapter {
     public EventAdapter(Context mContext, ArrayList<EventModel> mList) {
         this.mContext = mContext;
         mEventList = mList;
-        Log.e(TAG, "listSize==" + mEventList.size());
     }
 
     @NonNull
@@ -128,12 +127,22 @@ public class EventAdapter extends RecyclerView.Adapter {
 
     public class EventViewHolder extends RecyclerView.ViewHolder {
 
+        private ImageView mEventImage;
+        private TextView mEventName, mEventDescription, mEventDate;
+
         public EventViewHolder(View itemView) {
             super(itemView);
+            mEventImage = itemView.findViewById(R.id.image);
+            mEventName = itemView.findViewById(R.id.event_name);
+            mEventDescription = itemView.findViewById(R.id.description);
+            mEventDate = itemView.findViewById(R.id.event_time);
+
         }
 
         public void bindView(int position) {
-
+            mEventName.setText(mEventList.get(position).getEventName());
+            mEventDescription.setText(mEventList.get(position).getEventDescription());
+            mEventDate.setText(mEventList.get(position).getEventTime());
         }
     }
 }

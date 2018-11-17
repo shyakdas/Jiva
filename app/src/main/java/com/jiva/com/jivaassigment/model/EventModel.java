@@ -8,14 +8,35 @@ public class EventModel {
     public String categoryName;
     public String eventName;
     public String eventImage;
+    public String eventDescription;
+    public String eventTime;
 
-    public EventModel(String type, String mainEventName, String categoryImage, String categoryName, String eventName, String eventImage) {
+    public EventModel(String type, String mainEventName, String categoryImage, String categoryName,
+                      String eventName, String eventImage, String eventDescription, String eventTime) {
         this.type = type;
         this.mainEventName = mainEventName;
         this.categoryImage = categoryImage;
         this.categoryName = categoryName;
         this.eventName = eventName;
         this.eventImage = eventImage;
+        this.eventDescription = eventDescription;
+        this.eventTime = eventTime;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
+
+    public String getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
     }
 
     public String getType() {
