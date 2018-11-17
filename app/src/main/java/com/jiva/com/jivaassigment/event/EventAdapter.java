@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
+import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.CategoryModel;
 import com.jiva.com.jivaassigment.model.EventModel;
 
@@ -22,10 +23,12 @@ public class EventAdapter extends RecyclerView.Adapter {
     private static final String TAG = EventAdapter.class.getName();
     private Context mContext;
     private ArrayList<EventModel> mEventList;
+    private EventDetailsListener eventListener;
 
-    public EventAdapter(Context mContext, ArrayList<EventModel> mList) {
+    public EventAdapter(Context mContext, ArrayList<EventModel> mList, EventDetailsListener listener) {
         this.mContext = mContext;
         mEventList = mList;
+        eventListener = listener;
     }
 
     @NonNull
@@ -125,7 +128,7 @@ public class EventAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class EventViewHolder extends RecyclerView.ViewHolder {
+    public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mEventImage;
         private TextView mEventName, mEventDescription, mEventDate;
@@ -136,13 +139,18 @@ public class EventAdapter extends RecyclerView.Adapter {
             mEventName = itemView.findViewById(R.id.event_name);
             mEventDescription = itemView.findViewById(R.id.description);
             mEventDate = itemView.findViewById(R.id.event_time);
-
+            itemView.setOnClickListener(this);
         }
 
         public void bindView(int position) {
             mEventName.setText(mEventList.get(position).getEventName());
             mEventDescription.setText(mEventList.get(position).getEventDescription());
             mEventDate.setText(mEventList.get(position).getEventTime());
+        }
+
+        @Override
+        public void onClick(View view) {
+            eventListener.openDetail(getAdapterPosition());
         }
     }
 }

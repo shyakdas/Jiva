@@ -1,5 +1,6 @@
 package com.jiva.com.jivaassigment.event;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jiva.com.jivaassigment.eventdetail.DetailActivity;
+import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.EventModel;
 import com.jiva.com.jivaassigment.R;
 
 import java.util.ArrayList;
 
-public class EventFragment extends Fragment {
+public class EventFragment extends Fragment implements EventDetailsListener {
 
     private RecyclerView mRecyclerView;
     private EventAdapter eventAdapter;
@@ -31,7 +34,7 @@ public class EventFragment extends Fragment {
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        eventAdapter = new EventAdapter(getActivity(), getListData());
+        eventAdapter = new EventAdapter(getActivity(), getListData(), this);
         mRecyclerView.setAdapter(eventAdapter);
         return view;
     }
@@ -77,5 +80,11 @@ public class EventFragment extends Fragment {
                 "Happy House", getResources().getResourceName(R.mipmap.demo),
                 "Last day of the year", "7th December,2018"));
         return mList;
+    }
+
+    @Override
+    public void openDetail(int id) {
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        startActivity(intent);
     }
 }
