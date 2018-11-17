@@ -150,7 +150,7 @@ public class EventAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View view) {
-            eventListener.openDetail(getAdapterPosition());
+            eventListener.openDetail(getAdapterPosition(), mEventList);
         }
     }
 }

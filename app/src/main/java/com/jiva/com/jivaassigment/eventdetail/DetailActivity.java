@@ -5,21 +5,35 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = DetailActivity.class.getName();
     private ImageView mBackPress, mShare;
+    private TextView mEventPrice, mEventGuest, mEventTime, mEventDescription, mEventType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         mBackPress = findViewById(R.id.back_arrow);
+        mEventPrice = findViewById(R.id.event_entry_fee);
         mShare = findViewById(R.id.share);
+        mEventGuest = findViewById(R.id.number_of_guest);
+        mEventTime = findViewById(R.id.event_time);
+        mEventDescription = findViewById(R.id.event_description);
+        mEventType = findViewById(R.id.event_type);
         mShare.setOnClickListener(this);
         mBackPress.setOnClickListener(this);
+        Bundle bundle = this.getIntent().getExtras();
+        mEventPrice.setText(bundle.getString("price"));
+        mEventGuest.setText(bundle.getString("guest"));
+        mEventTime.setText(bundle.getString("date") + " " + bundle.getString("time")+" ,");
+        mEventDescription.setText(bundle.getString("description"));
+        mEventType.setText(bundle.getString("category"));
     }
 
     @Override

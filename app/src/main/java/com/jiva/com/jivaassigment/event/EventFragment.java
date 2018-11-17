@@ -49,42 +49,58 @@ public class EventFragment extends Fragment implements EventDetailsListener {
     public ArrayList<EventModel> getListData() {
         mList = new ArrayList<>();
         mList.add(new EventModel("main", "Near You", "",
-                "", "", "", "", ""));
+                "", "", "", "", "",
+                "", "", "", ""));
 
         mList.add(new EventModel("category", "Near you",
                 getResources().getResourceName(R.mipmap.demo), "Sports", "",
-                "", "", ""));
+                "", "", "", "", "",
+                "", ""));
         mList.add(new EventModel("main", "Today", "",
-                "", "", "", "", ""));
+                "", "", "", "", "",
+                "", "", "", ""));
 
 
         mList.add(new EventModel("event", "", "", "",
                 "Ladies Night", getResources().getResourceName(R.mipmap.demo),
-                "Ladies night party", "7th December,2018"));
+                "Ladies night party", "7th Dec",
+                "₹2000", "1pm-11pm", "10 Guests", "Party"));
         mList.add(new EventModel("event", "", "", "",
                 "Airplane Joyride", getResources().getResourceName(R.mipmap.demo),
-                "Let's have ride", "7th December,2018"));
+                "Let's have ride", "7th Dec",
+                "₹3000", "1pm-10pm", "2 Guests", "Outdoor"));
         mList.add(new EventModel("event", "", "", "",
                 "Bike Ride", getResources().getResourceName(R.mipmap.demo),
-                "Let's see the world", "7th December,2018"));
+                "Let's see the world", "7th Dec",
+                "₹1000", "8am-11pm", "12 Guests", "Outdoor"));
         mList.add(new EventModel("event", "", "", "",
                 "Long Drive", getResources().getResourceName(R.mipmap.demo),
-                "Long drive with friends", "7th December,2018"));
+                "Long drive with friends", "7th Dec",
+                "₹1000", "6am-11pm", "15 Guest", "Outdoor"));
         mList.add(new EventModel("event", "", "", "",
                 "Bing Bang Party", getResources().getResourceName(R.mipmap.demo),
-                "Let's celebrate Christmas party together", "7th December,2018"));
+                "Let's celebrate Christmas party together", "7th Dec",
+                "₹8000", "8pm-11pm", "1 Guest", "Indoor"));
         mList.add(new EventModel("event", "", "", "",
                 "Party House", getResources().getResourceName(R.mipmap.demo),
-                "Let's rock the house", "7th December,2018"));
+                "Let's rock the house", "7th Dec",
+                "₹6000", "7pm-11pm", "2 Guests", "Indoor"));
         mList.add(new EventModel("event", "", "", "",
                 "Happy House", getResources().getResourceName(R.mipmap.demo),
-                "Last day of the year", "7th December,2018"));
+                "Last day of the year", "7th Dec",
+                "₹5000", "6pm-11pm", "1 Guest", "Indoor"));
         return mList;
     }
 
     @Override
-    public void openDetail(int id) {
+    public void openDetail(int id, ArrayList<EventModel> mList) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("price", mList.get(id).getEventPrice());
+        intent.putExtra("date", mList.get(id).getEventTime());
+        intent.putExtra("time", mList.get(id).getEventTimeLimit());
+        intent.putExtra("guest", mList.get(id).getEventGuest());
+        intent.putExtra("description", mList.get(id).getEventDescription());
+        intent.putExtra("category", mList.get(id).getEventCategory());
         startActivity(intent);
     }
 }
