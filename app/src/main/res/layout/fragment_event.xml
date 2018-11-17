@@ -50,38 +50,12 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:id="@+id/contentView"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
-        <!-- Loading view (Necessary for MVP) -->
-
-        <ProgressBar
-            android:id="@+id/loadingView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            android:visibility="gone" />
-
-        <!-- Error view (Necessary for MVP) -->
-
-        <TextView
-            android:id="@+id/errorView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone" />
     </RelativeLayout>
-
 </android.support.design.widget.CoordinatorLayout>
