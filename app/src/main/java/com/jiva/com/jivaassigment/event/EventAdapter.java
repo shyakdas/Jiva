@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
+import com.jiva.com.jivaassigment.listener.CategoryListener;
 import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.CategoryModel;
 import com.jiva.com.jivaassigment.model.EventModel;
@@ -97,7 +98,7 @@ public class EventAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder {
+    public class CategoryViewHolder extends RecyclerView.ViewHolder implements CategoryListener {
 
         private RecyclerView mRecyclerView;
         private CategoryAdapter categoryAdapter;
@@ -110,7 +111,7 @@ public class EventAdapter extends RecyclerView.Adapter {
                     LinearLayoutManager.HORIZONTAL, false);
             mRecyclerView.setLayoutManager(linearLayoutManager);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-            categoryAdapter = new CategoryAdapter(mContext, getCategoryData());
+            categoryAdapter = new CategoryAdapter(mContext, getCategoryData(), this);
             mRecyclerView.setAdapter(categoryAdapter);
         }
 
@@ -125,6 +126,11 @@ public class EventAdapter extends RecyclerView.Adapter {
 
         public void bindView(int position) {
 
+        }
+
+        @Override
+        public void category(String categoryName) {
+            eventListener.categoryDetails(categoryName);
         }
     }
 

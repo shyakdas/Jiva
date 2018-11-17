@@ -7,4 +7,6 @@ import java.util.ArrayList;
 public interface EventDetailsListener {
 
     void openDetail(int id, ArrayList<EventModel> modelArrayList);
+
+    void categoryDetails(String name);
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jiva.com.jivaassigment.R;
+import com.jiva.com.jivaassigment.categoryevent.CategoryFragment;
 import com.jiva.com.jivaassigment.eventdetail.DetailActivity;
 import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.EventModel;
-import com.jiva.com.jivaassigment.R;
 
 import java.util.ArrayList;
 
 public class EventFragment extends Fragment implements EventDetailsListener {
 
+    private static final String TAG = EventFragment.class.getName();
     private RecyclerView mRecyclerView;
     private EventAdapter eventAdapter;
     private ArrayList<EventModel> mList;
@@ -102,5 +105,21 @@ public class EventFragment extends Fragment implements EventDetailsListener {
         intent.putExtra("description", mList.get(id).getEventDescription());
         intent.putExtra("category", mList.get(id).getEventCategory());
         startActivity(intent);
+    }
+
+    @Override
+    public void categoryDetails(String name) {
+        CategoryFragment categoryFragment = new CategoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("category_name", name);
+        categoryFragment.setArguments(bundle);
+        goToNextFragment(categoryFragment);
+    }
+
+    public void goToNextFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.loginFrame, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
