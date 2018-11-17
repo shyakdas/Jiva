@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.model.CategoryModel;
@@ -82,12 +83,15 @@ public class EventAdapter extends RecyclerView.Adapter {
 
     public class EventMainViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView mTextView;
+
         public EventMainViewHolder(View itemView) {
             super(itemView);
+            mTextView = itemView.findViewById(R.id.near_you);
         }
 
         public void bindView(int position) {
-
+            mTextView.setText(mEventList.get(position).getMainEventName());
         }
     }
 

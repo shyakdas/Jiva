@@ -2,11 +2,13 @@ package com.jiva.com.jivaassigment.event;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
@@ -45,15 +47,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     public class CategoryItemViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mCategoryImage;
+        private ImageView mCategoryImage;
+        private TextView mCategoryText;
 
         public CategoryItemViewHolder(View itemView) {
             super(itemView);
-            mCategoryImage = itemView.findViewById(R.id.text);
+            mCategoryImage = itemView.findViewById(R.id.category_image);
+            mCategoryText = itemView.findViewById(R.id.category_name);
         }
 
         public void bind(int position) {
-            mCategoryImage.setText(modelArrayList.get(position).getCategoryName());
+            mCategoryText.setText(modelArrayList.get(position).getCategoryName());
+            mCategoryImage.setAlpha(0.6f);
+            mCategoryText.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
         }
     }
 }
