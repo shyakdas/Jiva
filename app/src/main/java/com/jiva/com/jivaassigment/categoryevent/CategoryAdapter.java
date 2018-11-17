@@ -27,6 +27,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemCa
         eventListener = listener;
     }
 
+    public void removeList() {
+        mList.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addList(ArrayList<EventModel> modelArrayList) {
+        mList = modelArrayList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ItemCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

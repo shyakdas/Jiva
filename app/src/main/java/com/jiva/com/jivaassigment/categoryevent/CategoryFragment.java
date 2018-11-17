@@ -20,10 +20,13 @@ import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.EventModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CategoryFragment extends Fragment implements View.OnClickListener, EventDetailsListener {
 
-    private ImageView mBackButton;
+    private static final String TAG = CategoryFragment.class.getName();
+    private ImageView mBackButton, mSort;
     private TextView mCategoryName;
     private RecyclerView mRecyclerView;
     private CategoryAdapter categoryAdapter;
@@ -35,6 +38,8 @@ public class CategoryFragment extends Fragment implements View.OnClickListener, 
         View view = inflater.inflate(R.layout.fragment_category, container, false);
         mBackButton = view.findViewById(R.id.back_button);
         mCategoryName = view.findViewById(R.id.category_image);
+        mSort = view.findViewById(R.id.sort);
+        mSort.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
         Bundle bundle = getArguments();
         mCategoryName.setText(bundle.getString("category_name"));
@@ -78,6 +83,7 @@ public class CategoryFragment extends Fragment implements View.OnClickListener, 
                 "Happy House", getResources().getResourceName(R.mipmap.demo),
                 "Last day of the year", "7th Dec",
                 "₹5000", "6pm-11pm", "1 Guest", "Indoor"));
+
         return mList;
     }
 
@@ -86,6 +92,12 @@ public class CategoryFragment extends Fragment implements View.OnClickListener, 
         switch (view.getId()) {
             case R.id.back_button:
                 getActivity().onBackPressed();
+                break;
+
+            case R.id.sort:
+                categoryAdapter.removeList();
+                Collections.sort(getListData(), new SortCategory());
+                categoryAdapter.addList(mList);
                 break;
         }
     }
@@ -105,5 +117,13 @@ public class CategoryFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void categoryDetails(String name) {
 
+    }
+
+    public class SortCategory implements Comparator<EventModel> {
+
+        @Override
+        public int compare(EventModel eventModel, EventModel t1) {
+            return eventModel.getEventName().compareTo(t1.getEventName());
+        }
     }
 }
