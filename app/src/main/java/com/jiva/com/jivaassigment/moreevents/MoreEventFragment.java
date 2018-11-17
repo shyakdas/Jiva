@@ -24,7 +24,7 @@ public class MoreEventFragment extends Fragment implements View.OnClickListener,
 
     private ImageView mImageView;
     private RecyclerView mRecyclerView;
-    private MoreEventAdpater categoryAdapter;
+    private MoreEventAdapter categoryAdapter;
     private ArrayList<EventModel> mList;
 
     @Nullable
@@ -39,7 +39,7 @@ public class MoreEventFragment extends Fragment implements View.OnClickListener,
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        categoryAdapter = new MoreEventAdpater(getActivity(), getListData(), this);
+        categoryAdapter = new MoreEventAdapter(getActivity(), getListData(), this);
         mRecyclerView.setAdapter(categoryAdapter);
         return view;
     }

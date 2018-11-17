@@ -15,13 +15,13 @@ import com.jiva.com.jivaassigment.model.EventModel;
 
 import java.util.ArrayList;
 
-public class MoreEventAdpater extends RecyclerView.Adapter<MoreEventAdpater.MoreEventViewHolder> {
+public class MoreEventAdapter extends RecyclerView.Adapter<MoreEventAdapter.MoreEventViewHolder> {
 
     private Context mContext;
     private ArrayList<EventModel> modelArrayList;
     private EventDetailsListener eventListener;
 
-    public MoreEventAdpater(Context mContext, ArrayList<EventModel> modelArrayList, EventDetailsListener listener) {
+    public MoreEventAdapter(Context mContext, ArrayList<EventModel> modelArrayList, EventDetailsListener listener) {
         this.mContext = mContext;
         this.modelArrayList = modelArrayList;
         eventListener = listener;
@@ -30,7 +30,7 @@ public class MoreEventAdpater extends RecyclerView.Adapter<MoreEventAdpater.More
     @NonNull
     @Override
     public MoreEventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MoreEventAdpater.MoreEventViewHolder(LayoutInflater.from(parent.getContext())
+        return new MoreEventAdapter.MoreEventViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_event, parent, false));
     }
 
