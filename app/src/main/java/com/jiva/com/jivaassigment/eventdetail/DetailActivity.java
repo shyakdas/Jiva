@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
+import com.jiva.com.jivaassigment.utils.Constant;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,11 +30,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         mShare.setOnClickListener(this);
         mBackPress.setOnClickListener(this);
         Bundle bundle = this.getIntent().getExtras();
-        mEventPrice.setText(bundle.getString("price"));
-        mEventGuest.setText(bundle.getString("guest"));
-        mEventTime.setText(bundle.getString("date") + " " + bundle.getString("time")+" ,");
-        mEventDescription.setText(bundle.getString("description"));
-        mEventType.setText(bundle.getString("category"));
+        mEventPrice.setText(bundle.getString(Constant.PRICE));
+        mEventGuest.setText(bundle.getString(Constant.GUEST));
+        mEventTime.setText(bundle.getString(Constant.DATE) + " " + bundle.getString(Constant.TIME) + " ,");
+        mEventDescription.setText(bundle.getString(Constant.DESCRIPTION));
+        mEventType.setText(bundle.getString(Constant.CATEGORY));
     }
 
     @Override
