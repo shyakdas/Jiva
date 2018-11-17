@@ -1,16 +1,13 @@
-package com.jiva.com.jivaassigment.search;
+package com.jiva.com.jivaassigment.moreevents;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,44 +20,27 @@ import com.jiva.com.jivaassigment.model.EventModel;
 
 import java.util.ArrayList;
 
-public class SearchFragment extends Fragment implements View.OnClickListener, EventDetailsListener {
+public class MoreEventFragment extends Fragment implements View.OnClickListener, EventDetailsListener {
 
-    private ImageView mBackButton;
-    private TextInputEditText mSearch;
+    private ImageView mImageView;
     private RecyclerView mRecyclerView;
-    private SearchAdapter searchAdapter;
+    private MoreEventAdpater categoryAdapter;
     private ArrayList<EventModel> mList;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
-        mBackButton = view.findViewById(R.id.back_button);
-        mSearch = view.findViewById(R.id.search);
-        mBackButton.setOnClickListener(this);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_more_event, container, false);
+        mImageView = view.findViewById(R.id.back_button);
+        mImageView.setOnClickListener(this);
         mRecyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        searchAdapter = new SearchAdapter(getActivity(), this);
-        mRecyclerView.setAdapter(searchAdapter);
-        mSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                filter(charSequence.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        categoryAdapter = new MoreEventAdpater(getActivity(), getListData(), this);
+        mRecyclerView.setAdapter(categoryAdapter);
         return view;
     }
 
@@ -98,25 +78,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ev
         return mList;
     }
 
-    void filter(String text) {
-        ArrayList<EventModel> temp = new ArrayList();
-        for (EventModel d : getListData()) {
-            if (d.getEventName().contains(text)) {
-                temp.add(d);
-            }
-        }
-        searchAdapter.updateList(temp);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.back_button:
-                getActivity().onBackPressed();
-                break;
-        }
-    }
-
     @Override
     public void openDetail(int id, ArrayList<EventModel> modelArrayList) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
@@ -132,5 +93,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ev
     @Override
     public void categoryDetails(String name) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back_button:
+                getActivity().onBackPressed();
+                break;
+        }
     }
 }

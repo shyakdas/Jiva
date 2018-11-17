@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:clickable="true"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
@@ -30,21 +31,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_toRightOf="@id/back_button"
-            android:text="Outdoor"
+            android:text="Today"
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/sort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
-            app:srcCompat="@drawable/ic_icon_sort" />
     </RelativeLayout>
 
     <View

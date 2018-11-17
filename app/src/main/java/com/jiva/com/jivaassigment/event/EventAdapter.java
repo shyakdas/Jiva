@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.listener.CategoryListener;
 import com.jiva.com.jivaassigment.listener.EventDetailsListener;
+import com.jiva.com.jivaassigment.listener.ShowMoreListener;
 import com.jiva.com.jivaassigment.model.CategoryModel;
 import com.jiva.com.jivaassigment.model.EventModel;
 
@@ -25,11 +26,14 @@ public class EventAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private ArrayList<EventModel> mEventList;
     private EventDetailsListener eventListener;
+    private ShowMoreListener showMoreListener;
 
-    public EventAdapter(Context mContext, ArrayList<EventModel> mList, EventDetailsListener listener) {
+    public EventAdapter(Context mContext, ArrayList<EventModel> mList, EventDetailsListener listener,
+                        ShowMoreListener moreListener) {
         this.mContext = mContext;
         mEventList = mList;
         eventListener = listener;
+        showMoreListener = moreListener;
     }
 
     @NonNull
@@ -84,17 +88,32 @@ public class EventAdapter extends RecyclerView.Adapter {
         return mEventList.size();
     }
 
-    public class EventMainViewHolder extends RecyclerView.ViewHolder {
+    public class EventMainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView mTextView;
+        private TextView mTextView, mShowMore;
 
         public EventMainViewHolder(View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.near_you);
+            mShowMore = itemView.findViewById(R.id.show_more);
+            mShowMore.setOnClickListener(this);
         }
 
         public void bindView(int position) {
             mTextView.setText(mEventList.get(position).getMainEventName());
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.show_more:
+                    if (mEventList.get(getAdapterPosition()).getMainEventName().equalsIgnoreCase("Near You")) {
+                        showMoreListener.showMoreItem("Near You");
+                    } else {
+                        showMoreListener.showMoreItem("Today");
+                    }
+                    break;
+            }
         }
     }
 

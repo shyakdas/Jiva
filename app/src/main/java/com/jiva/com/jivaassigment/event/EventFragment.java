@@ -18,12 +18,15 @@ import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.categoryevent.CategoryFragment;
 import com.jiva.com.jivaassigment.eventdetail.DetailActivity;
 import com.jiva.com.jivaassigment.listener.EventDetailsListener;
+import com.jiva.com.jivaassigment.listener.ShowMoreListener;
 import com.jiva.com.jivaassigment.model.EventModel;
+import com.jiva.com.jivaassigment.morecategory.MoreCategoryFragment;
+import com.jiva.com.jivaassigment.moreevents.MoreEventFragment;
 import com.jiva.com.jivaassigment.search.SearchFragment;
 
 import java.util.ArrayList;
 
-public class EventFragment extends Fragment implements EventDetailsListener, View.OnClickListener {
+public class EventFragment extends Fragment implements EventDetailsListener, View.OnClickListener, ShowMoreListener {
 
     private static final String TAG = EventFragment.class.getName();
     private RecyclerView mRecyclerView;
@@ -42,7 +45,7 @@ public class EventFragment extends Fragment implements EventDetailsListener, Vie
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        eventAdapter = new EventAdapter(getActivity(), getListData(), this);
+        eventAdapter = new EventAdapter(getActivity(), getListData(), this, this);
         mRecyclerView.setAdapter(eventAdapter);
         return view;
     }
@@ -135,6 +138,17 @@ public class EventFragment extends Fragment implements EventDetailsListener, Vie
                 SearchFragment searchFragment = new SearchFragment();
                 goToNextFragment(searchFragment);
                 break;
+        }
+    }
+
+    @Override
+    public void showMoreItem(String name) {
+        if (name.equalsIgnoreCase("Near You")) {
+            MoreCategoryFragment moreCategoryFragment = new MoreCategoryFragment();
+            goToNextFragment(moreCategoryFragment);
+        } else {
+            MoreEventFragment moreEventFragment = new MoreEventFragment();
+            goToNextFragment(moreEventFragment);
         }
     }
 }
