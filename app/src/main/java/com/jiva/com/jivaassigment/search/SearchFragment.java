@@ -20,6 +20,7 @@ import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.eventdetail.DetailActivity;
 import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.EventModel;
+import com.jiva.com.jivaassigment.utils.Constant;
 
 import java.util.ArrayList;
 
@@ -120,12 +121,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Ev
     @Override
     public void openDetail(int id, ArrayList<EventModel> modelArrayList) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra("price", mList.get(id).getEventPrice());
-        intent.putExtra("date", mList.get(id).getEventTime());
-        intent.putExtra("time", mList.get(id).getEventTimeLimit());
-        intent.putExtra("guest", mList.get(id).getEventGuest());
-        intent.putExtra("description", mList.get(id).getEventDescription());
-        intent.putExtra("category", mList.get(id).getEventCategory());
+        intent.putExtra(Constant.PRICE, mList.get(id).getEventPrice());
+        intent.putExtra(Constant.DATE, mList.get(id).getEventTime());
+        intent.putExtra(Constant.TIME, mList.get(id).getEventTimeLimit());
+        intent.putExtra(Constant.GUEST, mList.get(id).getEventGuest());
+        intent.putExtra(Constant.DESCRIPTION, mList.get(id).getEventDescription());
+        intent.putExtra(Constant.CATEGORY, mList.get(id).getEventCategory());
         startActivity(intent);
     }
 

@@ -26,7 +26,7 @@ dependencies {
     implementation config.commonDependency.recyclerView
     implementation config.commonDependency.cardView
     implementation config.commonDependency.designSupportLib
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation config.commonDependency.constraintLayout
     testImplementation config.commonDependency.jUnit
     androidTestImplementation config.commonDependency.testRunner
     androidTestImplementation config.commonDependency.espressoCore

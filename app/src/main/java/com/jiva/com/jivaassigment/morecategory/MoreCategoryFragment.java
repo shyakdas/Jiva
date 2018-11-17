@@ -17,6 +17,7 @@ import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.categoryevent.CategoryFragment;
 import com.jiva.com.jivaassigment.listener.CategoryListener;
 import com.jiva.com.jivaassigment.model.CategoryModel;
+import com.jiva.com.jivaassigment.utils.Constant;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class MoreCategoryFragment extends Fragment implements CategoryListener, 
     public void category(String categoryName) {
         CategoryFragment categoryFragment = new CategoryFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("category_name", categoryName);
+        bundle.putString(Constant.CATEGORY_NAME, categoryName);
         categoryFragment.setArguments(bundle);
         goToNextFragment(categoryFragment);
     }
