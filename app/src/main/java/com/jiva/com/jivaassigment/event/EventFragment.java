@@ -12,27 +12,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.categoryevent.CategoryFragment;
 import com.jiva.com.jivaassigment.eventdetail.DetailActivity;
 import com.jiva.com.jivaassigment.listener.EventDetailsListener;
 import com.jiva.com.jivaassigment.model.EventModel;
+import com.jiva.com.jivaassigment.search.SearchFragment;
 
 import java.util.ArrayList;
 
-public class EventFragment extends Fragment implements EventDetailsListener {
+public class EventFragment extends Fragment implements EventDetailsListener, View.OnClickListener {
 
     private static final String TAG = EventFragment.class.getName();
     private RecyclerView mRecyclerView;
     private EventAdapter eventAdapter;
     private ArrayList<EventModel> mList;
+    private TextView mSearch;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
         mRecyclerView = view.findViewById(R.id.recyclerView);
+        mSearch = view.findViewById(R.id.search);
+        mSearch.setOnClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -121,5 +126,15 @@ public class EventFragment extends Fragment implements EventDetailsListener {
         fragmentTransaction.add(R.id.loginFrame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.search:
+                SearchFragment searchFragment = new SearchFragment();
+                goToNextFragment(searchFragment);
+                break;
+        }
     }
 }
