@@ -2,16 +2,17 @@ package com.jiva.com.jivaassigment.favorite;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.eventdetail.DetailActivity;
@@ -29,6 +30,13 @@ public class FavoriteFragment extends Fragment implements EventDetailsListener, 
     private FavoriteAdapter favoriteAdapter;
     private ArrayList<EventModel> mList;
     private ImageView mSort;
+
+    public static FavoriteFragment newInstance() {
+        Bundle args = new Bundle();
+        FavoriteFragment fragment = new FavoriteFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -95,13 +103,6 @@ public class FavoriteFragment extends Fragment implements EventDetailsListener, 
     @Override
     public void categoryDetails(String name) {
 
-    }
-
-    public static FavoriteFragment newInstance() {
-        Bundle args = new Bundle();
-        FavoriteFragment fragment = new FavoriteFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override

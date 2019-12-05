@@ -1,12 +1,13 @@
 package com.jiva.com.jivaassigment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.jiva.com.jivaassigment.utils.HomePagerAdapter;
 import com.jiva.com.jivaassigment.utils.NonSwipeableViewpager;

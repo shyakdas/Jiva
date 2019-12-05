@@ -2,17 +2,18 @@ package com.jiva.com.jivaassigment.event;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jiva.com.jivaassigment.R;
 import com.jiva.com.jivaassigment.categoryevent.CategoryFragment;
@@ -35,6 +36,13 @@ public class EventFragment extends Fragment implements EventDetailsListener, Vie
     private ArrayList<EventModel> mList;
     private TextView mSearch;
 
+    public static EventFragment newInstance() {
+        Bundle args = new Bundle();
+        EventFragment fragment = new EventFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,13 +57,6 @@ public class EventFragment extends Fragment implements EventDetailsListener, Vie
         eventAdapter = new EventAdapter(getActivity(), getListData(), this, this);
         mRecyclerView.setAdapter(eventAdapter);
         return view;
-    }
-
-    public static EventFragment newInstance() {
-        Bundle args = new Bundle();
-        EventFragment fragment = new EventFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     public ArrayList<EventModel> getListData() {

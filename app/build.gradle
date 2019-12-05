@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 def config = rootProject.extensions.getByName("ext")
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         applicationId "com.jiva.com.jivaassigment"
@@ -9,7 +9,7 @@ android {
         targetSdkVersion config["targetSdkVersion"]
         versionCode config["versionCode"]
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
