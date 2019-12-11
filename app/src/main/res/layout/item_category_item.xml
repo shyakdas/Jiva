@@ -2,14 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="5dp"
+    android:layout_margin="@dimen/dp_5"
     android:elevation="5dp">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/dp_10">
 
         <ImageView
             android:id="@+id/category_image"
@@ -22,13 +21,13 @@
             android:id="@+id/category_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignLeft="@id/category_image"
+            android:layout_alignStart="@id/category_image"
             android:layout_alignTop="@id/category_image"
-            android:layout_alignRight="@id/category_image"
+            android:layout_alignEnd="@id/category_image"
             android:layout_alignBottom="@id/category_image"
             android:layout_marginBottom="10dp"
             android:gravity="bottom|center"
-            android:text="Outdoor"
+            android:text="@string/outdoor"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
     </RelativeLayout>

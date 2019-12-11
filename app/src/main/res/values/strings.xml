@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">JivaAssigment</string>
+    <string name="app_name">MultipleViewHolder</string>
     <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="share">Share</string>
+    <string name="show_more">Show more</string>
+    <string name="near_you">Near You</string>
+    <string name="_7th_november_thursday">7th November,Thursday</string>
+    <string name="ladies_night">Ladies Night</string>
+    <string name="ladies_night_party_with_dj_nash">Ladies night party with Dj Nash</string>
+    <string name="outdoor">Outdoor</string>
+    <string name="search">Search</string>
+    <string name="shayak_das_repository">Shayak Das Repository</string>
+    <string name="today">Today</string>
 </resources>
